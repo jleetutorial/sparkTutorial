@@ -20,13 +20,13 @@ public class AirportsByCountrySolution {
 
         JavaRDD<String> lines = sc.textFile("in/airports.text");
 
-        JavaPairRDD<String, String> CountryAndAirportNameAndPair =
+        JavaPairRDD<String, String> countryAndAirportNameAndPair =
                 lines.mapToPair( airport -> new Tuple2<>(airport.split(Utils.COMMA_DELIMITER)[3],
                                                          airport.split(Utils.COMMA_DELIMITER)[1]));
 
-        JavaPairRDD<String, Iterable<String>> AirportsByCountry = CountryAndAirportNameAndPair.groupByKey();
+        JavaPairRDD<String, Iterable<String>> airportsByCountry = countryAndAirportNameAndPair.groupByKey();
 
-        for (Map.Entry<String, Iterable<String>> airports : AirportsByCountry.collectAsMap().entrySet()) {
+        for (Map.Entry<String, Iterable<String>> airports : airportsByCountry.collectAsMap().entrySet()) {
             System.out.println(airports.getKey() + " : " + airports.getValue());
         }
     }
