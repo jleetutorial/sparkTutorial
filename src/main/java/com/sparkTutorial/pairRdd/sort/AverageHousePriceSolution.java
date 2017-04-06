@@ -14,7 +14,7 @@ public class AverageHousePriceSolution {
 
     public static void main(String[] args) throws Exception {
         Logger.getLogger("org").setLevel(Level.ERROR);
-        SparkConf conf = new SparkConf().setAppName("wordCounts").setMaster("local[3]");
+        SparkConf conf = new SparkConf().setAppName("averageHousePriceSolution").setMaster("local[3]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         JavaRDD<String> lines = sc.textFile("in/RealEstate.csv");
