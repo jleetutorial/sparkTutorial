@@ -22,13 +22,12 @@ public class PairRddFromRegularRdd {
 
         JavaRDD<String> regularRDDs = sc.parallelize(inputStrings);
 
-        JavaPairRDD<String, Integer> pairRDD = regularRDDs.mapToPair(getNameAndAgePair());
+        JavaPairRDD<String, Integer> pairRDD = regularRDDs.mapToPair(getPairFunction());
 
         pairRDD.coalesce(1).saveAsTextFile("out/pair_rdd_from_regular_rdd");
     }
 
-    private static PairFunction<String, String, Integer> getNameAndAgePair() {
-        return (PairFunction<String, String, Integer>) s -> new Tuple2<>(s.split(" ")[0],
-                                                                         Integer.valueOf(s.split(" ")[1]));
+    private static PairFunction<String, String, Integer> getPairFunction() {
+        return s -> new Tuple2<>(s.split(" ")[0], Integer.valueOf(s.split(" ")[1]));
     }
 }
