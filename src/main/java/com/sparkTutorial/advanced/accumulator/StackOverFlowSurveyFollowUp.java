@@ -30,16 +30,20 @@ public class StackOverFlowSurveyFollowUp {
 
         JavaRDD<String> responseFromCanada = responseRDD.filter(response -> {
 
+            // update processedBytes accumulator with the size of the current response
             processedBytes.add(response.getBytes().length);
-
+            
+           // split the reponse using commas.
             String[] splits = response.split(Utils.COMMA_DELIMITER, -1);
 
+            // increase the total accumulator by 1
             total.add(1);
 
+            // increase the missingSalaryMidPoint accumulator by 1 if the salary middle point is not present in the reponse
             if (splits[14].isEmpty()) {
                 missingSalaryMidPoint.add(1);
             }
-
+            // return true if the reponse is from Canada
             return splits[2].equals("Canada");
 
         });
