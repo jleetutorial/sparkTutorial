@@ -56,6 +56,50 @@ String firstLine = lines.first();
 - Apply transformations.
 - Launch actions.
 
+#### CREATE RDDs
+##### How to create a RDD
+- Take an existing collection in your program and pass it to SparkContext's parallelize method.
+```java
+List<Integer> inputIntegers = Arrays.asList(1, 2, 3, 4, 5);
+JavaRDD<Integer> integerRdd = sc.parallelize(inputIntegers);
+```
+- All the elements in the collection will then be copied to form a distributed dataset that can be operated on in parallel.
+- Very handy to create an RDD with little effort.
+- NOT practical working with large datasets (need of large memory).
+- Load RDDs from external storage by calling textFile method on Sparkcontext.
+```java
+JavaSparkContext sc = new JavaSparkContext(conf);
+JavaRDD<String> lines = sc.textFile("in/uppercase.text");
+```
+- The external storage is usually a distributed file system such as **Amazon S3** or **HDFS**
+- The are other data sources which can be integrated with Spark and used to create RDDs including JDBC, Cassandra, and ElasticSearch, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
