@@ -74,7 +74,10 @@ JavaRDD<String> lines = sc.textFile("in/uppercase.text");
 - The external storage is usually a distributed file system such as **Amazon S3** or **HDFS**
 - The are other data sources which can be integrated with Spark and used to create RDDs including JDBC, Cassandra, and ElasticSearch, etc.
 
-
+#### MAP AND FILTER TRANSFORMATION
+##### Transformations
+- Transformations are operations on RDDs which will return a new RDD.
+- The two most common transformations are **filter and map**
 
 
 
